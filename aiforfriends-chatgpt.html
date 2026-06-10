@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Friends · ChatGPT 使用指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAF7F2;
+    color: #2C2B28;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    padding: 24px 28px 16px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    border-bottom: 2.5px solid #74C89A;
+    padding-bottom: 14px;
+    gap: 16px;
+  }
+  .header-left h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 26px;
+    color: #2A8A57;
+    line-height: 1.1;
+  }
+  .header-left .sub {
+    font-size: 12px;
+    color: #7A8C6E;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+  .header-right strong {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: #2A8A57;
+    display: block;
+  }
+
+  /* INTRO STRIP */
+  .intro {
+    background: #EDF7F1;
+    border-left: 4px solid #74C89A;
+    border-radius: 0 8px 8px 0;
+    padding: 8px 14px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    color: #555;
+  }
+  .intro b { color: #2A8A57; }
+
+  /* LEVEL GRID */
+  .levels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1.5px solid #C0E8CF;
+    padding: 11px 13px 12px;
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .badge {
+    font-family: 'Fredoka One', cursive;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-1 { background: #E1F5EE; color: #0F6E56; }
+  .badge-2 { background: #EAF3DE; color: #4A7A30; }
+  .badge-3 { background: #E6F1FB; color: #185FA5; }
+  .badge-4 { background: #FAEEDA; color: #854F0B; }
+  .badge-5 { background: #EEEDFE; color: #534AB7; }
+  .badge-6 { background: #FBEAF0; color: #C0587A; }
+
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 14px;
+    color: #2C2B28;
+    line-height: 1.2;
+  }
+  .card-title .en {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #999;
+    margin-top: 1px;
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+  }
+  .steps li {
+    display: flex;
+    gap: 7px;
+    padding: 4px 0;
+    font-size: 12px;
+    border-bottom: 0.5px solid #EEF5EE;
+    color: #3A3A38;
+    line-height: 1.45;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li .num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 12px;
+    color: #74C89A;
+    flex-shrink: 0;
+    width: 14px;
+    text-align: right;
+  }
+
+  .try-box {
+    margin-top: 9px;
+    background: #F4FBF7;
+    border-radius: 6px;
+    padding: 7px 9px;
+    font-size: 11px;
+    color: #666;
+    border-left: 3px solid #74C89A;
+  }
+  .try-box .try-label {
+    font-weight: 600;
+    color: #2A8A57;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+  .try-box em {
+    font-style: normal;
+    color: #2A8A57;
+    font-weight: 500;
+  }
+
+  /* TIPS ROW */
+  .tips-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .tips-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1.5px solid #B8D4A0;
+    padding: 10px 13px;
+  }
+  .tips-card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: #2A8A57;
+    margin-bottom: 6px;
+  }
+  .tips-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .tips-card ul li {
+    font-size: 11.5px;
+    color: #444;
+    padding: 2px 0;
+    padding-left: 12px;
+    position: relative;
+  }
+  .tips-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: #74C89A;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    font-size: 10.5px;
+    color: #aaa;
+    border-top: 1px solid #C0E8CF;
+    padding-top: 10px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .footer a { color: #2A8A57; text-decoration: none; }
+
+  /* PRINT */
+  @media print {
+    body { padding: 14px 18px 10px; background: #fff; }
+    .card, .tips-card { border-color: #ddd; }
+    @page { size: letter portrait; margin: 0.5in; }
+  }
+
+  @media (max-width: 600px) {
+    .levels { grid-template-columns: 1fr; }
+    .tips-row { grid-template-columns: 1fr; }
+    .header { flex-direction: column; }
+    .header-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>🤝 AI for Friends</h1>
+    <div class="sub">ChatGPT 使用入门指南 · Quick-Start Guide · 凤凰城科工专理事会</div>
+  </div>
+  <div class="header-right">
+    <strong>chatgpt.com</strong>
+    June 2026 · Phoenix AZ<br>
+    sherryanalytics.github.io/aiforfriends
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <b>ChatGPT</b> 是 OpenAI 公司开发的 AI 助手，也是目前全球最多人使用的 AI 工具。
+  它特别擅长生成图片、语音对话和联网搜索。打开 <b>chatgpt.com</b>，免费注册即可开始。
+</div>
+
+<!-- SIX LEVEL CARDS -->
+<div class="levels">
+
+  <!-- LEVEL 1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-1">入门 Level 1</span>
+    </div>
+    <div class="card-title">第一次对话<span class="en">Say Hello</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>打开 chatgpt.com，注册账号</li>
+      <li><span class="num">2</span>在输入框用中文或英文打一句话</li>
+      <li><span class="num">3</span>按 Enter，读回答</li>
+      <li><span class="num">4</span>不满意？直接说"再解释得简单一点"</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"今晚想做红烧肉，帮我写出步骤，我是新手。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-2">基础 Level 2</span>
+    </div>
+    <div class="card-title">翻译与改写<span class="en">Translate & Rewrite</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>直接把要翻译的文字粘贴进去</li>
+      <li><span class="num">2</span>说明目标语言和用途</li>
+      <li><span class="num">3</span>要求调整语气：正式 / 口语 / 亲切</li>
+      <li><span class="num">4</span>让它帮你润色、简化或扩展内容</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"帮我把这封英文邮件翻译成中文，语气要自然一点，不要太生硬。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-3">进阶 Level 3</span>
+    </div>
+    <div class="card-title">用语音聊天<span class="en">Voice Chat</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>手机 App 下载 ChatGPT</li>
+      <li><span class="num">2</span>点击麦克风图标开始说话</li>
+      <li><span class="num">3</span>用中文或英文对话，它都能听懂</li>
+      <li><span class="num">4</span>适合练习英文口语或免打字场景</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>（用语音）"帮我练习一段英文自我介绍，然后给我纠正发音建议。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-4">中级 Level 4</span>
+    </div>
+    <div class="card-title">生成和修改图片<span class="en">Create & Edit Images</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>用文字描述你想要的图片</li>
+      <li><span class="num">2</span>上传已有照片，要求修改或美化</li>
+      <li><span class="num">3</span>可以换背景、加文字、改风格</li>
+      <li><span class="num">4</span>生成后觉得不对，继续描述调整</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"帮我把这张照片的背景换成樱花公园，保持人物不变。"</em><br>
+      <em>"画一张温馨的中式家庭聚餐插图，卡通风格。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-5">高级 Level 5</span>
+    </div>
+    <div class="card-title">联网搜索与查询<span class="en">Search the Web</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>开启 Search 功能（付费版）</li>
+      <li><span class="num">2</span>问最新新闻、价格、活动信息</li>
+      <li><span class="num">3</span>让它比较不同产品或服务</li>
+      <li><span class="num">4</span>它会引用来源，方便核实</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"帮我查一下凤凰城本周末有什么华人文化活动，列出地点和时间。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-6">精通 Level 6</span>
+    </div>
+    <div class="card-title">自定义 GPT<span class="en">Custom GPTs</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>在 GPT Store 找到专用 AI 工具</li>
+      <li><span class="num">2</span>或自己创建一个专属 GPT</li>
+      <li><span class="num">3</span>上传你的资料，训练专属助手</li>
+      <li><span class="num">4</span>分享给家人或团队一起用</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"帮我创建一个专门回答家庭理财问题的 GPT，用中文回答，语气像朋友一样。"</em>
+    </div>
+  </div>
+
+</div><!-- end .levels -->
+
+<!-- TIPS ROW -->
+<div class="tips-row">
+  <div class="tips-card">
+    <h3>✨ ChatGPT 特有功能 · Unique Features</h3>
+    <ul>
+      <li>🎨 DALL·E 图片生成（文字变图片）</li>
+      <li>🎙️ 语音对话模式，免打字</li>
+      <li>🌐 联网搜索，查最新信息</li>
+      <li>📁 上传文件、图片、PDF 分析</li>
+      <li>🤖 GPT Store：数千个专用 AI 工具</li>
+    </ul>
+  </div>
+  <div class="tips-card">
+    <h3>⚠️ 记住这几点 · Keep in Mind</h3>
+    <ul>
+      <li>免费版不含联网和图片生成功能</li>
+      <li>重要决策请自行核实（医疗、法律、财务）</li>
+      <li>不要输入个人隐私或密码</li>
+      <li>生成的图片有版权限制，商用请注意</li>
+      <li>多用多熟悉，每天用一次就会越来越顺</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  AI for Friends · 凤凰城科工专理事会 ·
+  <a href="https://sherryanalytics.github.io/aiforfriends">sherryanalytics.github.io/aiforfriends</a>
+  · June 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Friends · Claude 使用指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAF7F2;
+    color: #2C2B28;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    padding: 24px 28px 16px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    border-bottom: 2.5px solid #E8A0B0;
+    padding-bottom: 14px;
+    gap: 16px;
+  }
+  .header-left h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 26px;
+    color: #C0587A;
+    line-height: 1.1;
+  }
+  .header-left .sub {
+    font-size: 12px;
+    color: #7A8C6E;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+  .header-right strong {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: #7A8C6E;
+    display: block;
+  }
+
+  /* INTRO STRIP */
+  .intro {
+    background: #F2EDE3;
+    border-left: 4px solid #E8A0B0;
+    border-radius: 0 8px 8px 0;
+    padding: 8px 14px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    color: #555;
+  }
+  .intro b { color: #C0587A; }
+
+  /* LEVEL GRID */
+  .levels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1.5px solid #EDD8C0;
+    padding: 11px 13px 12px;
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .badge {
+    font-family: 'Fredoka One', cursive;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-1 { background: #FBEAF0; color: #C0587A; }
+  .badge-2 { background: #EAF3DE; color: #4A7A30; }
+  .badge-3 { background: #E6F1FB; color: #185FA5; }
+  .badge-4 { background: #FAEEDA; color: #854F0B; }
+  .badge-5 { background: #EEEDFE; color: #534AB7; }
+  .badge-6 { background: #E1F5EE; color: #0F6E56; }
+
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 14px;
+    color: #2C2B28;
+    line-height: 1.2;
+  }
+  .card-title .en {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #999;
+    margin-top: 1px;
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+  }
+  .steps li {
+    display: flex;
+    gap: 7px;
+    padding: 4px 0;
+    font-size: 12px;
+    border-bottom: 0.5px solid #F0EDE8;
+    color: #3A3A38;
+    line-height: 1.45;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li .num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 12px;
+    color: #E8A0B0;
+    flex-shrink: 0;
+    width: 14px;
+    text-align: right;
+  }
+
+  .try-box {
+    margin-top: 9px;
+    background: #FAF7F2;
+    border-radius: 6px;
+    padding: 7px 9px;
+    font-size: 11px;
+    color: #666;
+    border-left: 3px solid #7A8C6E;
+  }
+  .try-box .try-label {
+    font-weight: 600;
+    color: #7A8C6E;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+  .try-box em {
+    font-style: normal;
+    color: #C0587A;
+    font-weight: 500;
+  }
+
+  /* TIPS ROW */
+  .tips-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .tips-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1.5px solid #B8D4A0;
+    padding: 10px 13px;
+  }
+  .tips-card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: #4A7A30;
+    margin-bottom: 6px;
+  }
+  .tips-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .tips-card ul li {
+    font-size: 11.5px;
+    color: #444;
+    padding: 2px 0;
+    padding-left: 12px;
+    position: relative;
+  }
+  .tips-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: #B8D4A0;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    font-size: 10.5px;
+    color: #aaa;
+    border-top: 1px solid #EDD8C0;
+    padding-top: 10px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .footer a { color: #C0587A; text-decoration: none; }
+
+  /* PRINT */
+  @media print {
+    body { padding: 14px 18px 10px; background: #fff; }
+    .card, .tips-card { border-color: #ddd; }
+    @page { size: letter portrait; margin: 0.5in; }
+  }
+
+  @media (max-width: 600px) {
+    .levels { grid-template-columns: 1fr; }
+    .tips-row { grid-template-columns: 1fr; }
+    .header { flex-direction: column; }
+    .header-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>🤝 AI for Friends</h1>
+    <div class="sub">Claude 使用入门指南 · Quick-Start Guide · 凤凰城科工专理事会</div>
+  </div>
+  <div class="header-right">
+    <strong>claude.ai</strong>
+    June 2026 · Phoenix AZ<br>
+    sherryanalytics.github.io/aiforfriends
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <b>Claude</b> 是 Anthropic 公司开发的 AI 助手。只需要用自然语言和它说话，就像和朋友聊天一样。
+  无需编程，无需技术背景。打开 <b>claude.ai</b>，免费注册即可开始。
+</div>
+
+<!-- SIX LEVEL CARDS -->
+<div class="levels">
+
+  <!-- LEVEL 1 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-1">入门 Level 1</span>
+    </div>
+    <div class="card-title">第一次对话<span class="en">Say Hello</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>打开 claude.ai，注册账号</li>
+      <li><span class="num">2</span>在输入框用中文或英文打一句话</li>
+      <li><span class="num">3</span>按 Enter，读回答</li>
+      <li><span class="num">4</span>觉得不满意？直接说"再简单一点"</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"今晚冰箱里有鸡蛋、豆腐、青菜，帮我想三个快手晚餐。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-2">基础 Level 2</span>
+    </div>
+    <div class="card-title">给它更多背景<span class="en">Add Context</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>告诉 Claude 你是谁、做什么的</li>
+      <li><span class="num">2</span>说清楚你想要什么结果</li>
+      <li><span class="num">3</span>指定语气：正式 / 轻松 / 简短</li>
+      <li><span class="num">4</span>不满意就继续对话，不用重新开始</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"帮我把这段房东通知翻译成中文，再解释一下我需要做什么。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 3 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-3">进阶 Level 3</span>
+    </div>
+    <div class="card-title">让它扮演角色<span class="en">Assign a Role</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>告诉 Claude 扮演某个专家</li>
+      <li><span class="num">2</span>描述你的具体场景</li>
+      <li><span class="num">3</span>要求它按步骤解释</li>
+      <li><span class="num">4</span>追问细节，深入对话</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"我们一家四口要去日本京都玩五天，预算适中，帮我规划一个行程，包括吃饭和交通。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 4 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-4">中级 Level 4</span>
+    </div>
+    <div class="card-title">处理文件和数据<span class="en">Work with Files</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>上传 PDF、Excel、图片文件</li>
+      <li><span class="num">2</span>让 Claude 总结、翻译或分析内容</li>
+      <li><span class="num">3</span>要求它提取关键数字或信息</li>
+      <li><span class="num">4</span>让它帮你写回复邮件或报告</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"这是一张我拍的收据，帮我列出所有消费项目和总金额。"</em><br>
+      <em>"帮我把这封英文信改得更礼貌正式一点。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 5 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-5">高级 Level 5</span>
+    </div>
+    <div class="card-title">建立工作流程<span class="en">Build a Workflow</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>创建 Project（项目），保存上下文</li>
+      <li><span class="num">2</span>把常用 Prompt（提示词）保存复用</li>
+      <li><span class="num">3</span>让 Claude 生成模板，定期更新</li>
+      <li><span class="num">4</span>把 AI 融入你的日常工作节奏</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"帮我设计一周的家庭晚餐菜单，要健康少油，顺便列出购物清单。"</em>
+    </div>
+  </div>
+
+  <!-- LEVEL 6 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-6">精通 Level 6</span>
+    </div>
+    <div class="card-title">个人知识与研究<span class="en">Personal Projects</span></div>
+    <ul class="steps">
+      <li><span class="num">1</span>上传笔记、文章、家史资料</li>
+      <li><span class="num">2</span>让 Claude 整理成知识库或时间线</li>
+      <li><span class="num">3</span>提问、对比、生成报告</li>
+      <li><span class="num">4</span>结合网络搜索做深度研究</li>
+    </ul>
+    <div class="try-box">
+      <div class="try-label">试试说 / Try saying</div>
+      <em>"这些是我爷爷留下的老照片和信件，帮我整理成家族故事，用讲故事的方式写出来。"</em>
+    </div>
+  </div>
+
+</div><!-- end .levels -->
+
+<!-- TIPS ROW -->
+<div class="tips-row">
+  <div class="tips-card">
+    <h3>💡 好 Prompt 的秘诀 · Better Prompts</h3>
+    <ul>
+      <li>说清楚你是谁（身份背景）</li>
+      <li>说清楚你想要什么（目标）</li>
+      <li>指定格式：列表、段落、表格</li>
+      <li>不满意就继续说，不要重新来过</li>
+      <li>可以用中文、英文，或两者混用</li>
+    </ul>
+  </div>
+  <div class="tips-card">
+    <h3>⚠️ 记住这几点 · Keep in Mind</h3>
+    <ul>
+      <li>Claude 不联网，信息截止到训练数据日期</li>
+      <li>重要决策请自行核实（法律、医疗、财务）</li>
+      <li>不要输入密码、银行账号等隐私信息</li>
+      <li>免费版已经很强大，够日常使用</li>
+      <li>多用多熟悉，像学用一个新工具</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  AI for Friends · 凤凰城科工专理事会 ·
+  <a href="https://sherryanalytics.github.io/aiforfriends">sherryanalytics.github.io/aiforfriends</a>
+  · June 2026
+</div>
+
+</body>
+</html>
