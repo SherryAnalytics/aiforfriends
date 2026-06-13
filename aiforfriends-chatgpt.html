@@ -205,6 +205,55 @@
     line-height: 1.2;
   }
 
+  /* GET THE APP */
+  .get-app {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #EDF7F1;
+    border: 1.5px solid #C0E8CF;
+    border-radius: 10px;
+    padding: 11px 14px;
+    margin-bottom: 14px;
+  }
+  .get-app-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
+  .get-app-body { flex: 1; }
+  .get-app-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    color: #2A8A57;
+    margin-bottom: 5px;
+  }
+  .get-app-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .get-app-links a {
+    font-size: 11px;
+    font-weight: 600;
+    color: #2A8A57;
+    background: #fff;
+    border: 1px solid #74C89A;
+    border-radius: 20px;
+    padding: 2px 10px;
+    text-decoration: none;
+  }
+  .get-app-tip {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .get-app-tip b { color: #2A8A57; }
+
   /* FOOTER */
   .footer {
     text-align: center;
@@ -387,6 +436,23 @@
       <li>生成的图片有版权限制，商用请注意</li>
       <li>多用多熟悉，每天用一次就会越来越顺</li>
     </ul>
+  </div>
+</div>
+
+<!-- GET THE APP -->
+<div class="get-app">
+  <img src="./icon_chatgpt.jpg" alt="ChatGPT app icon" class="get-app-icon">
+  <div class="get-app-body">
+    <div class="get-app-title">📱 在手机上使用 · Get on Mobile</div>
+    <div class="get-app-links">
+      <a href="https://chatgpt.com" target="_blank">🌐 chatgpt.com</a>
+      <a href="https://apps.apple.com/us/app/chatgpt/id6448311069" target="_blank">🍎 iOS App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.openai.chatgpt" target="_blank">▶ Google Play</a>
+    </div>
+    <div class="get-app-tip">
+      💡 <b>最简单方法：</b>手机浏览器打开 chatgpt.com → 点分享 → 添加到主屏幕。免下载，像 APP 一样使用。<br>
+      <b>Easiest:</b> Open chatgpt.com in your phone browser → Share → Add to Home Screen.
+    </div>
   </div>
 </div>
 

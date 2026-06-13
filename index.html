@@ -141,8 +141,7 @@
     .btn-primary:hover { background: #AD6A7A; transform: translateY(-2px); }
 
     /* ── SCALLOP DIVIDERS ── */
-    .scallop-down { line-height: 0; }
-    .scallop-up   { line-height: 0; }
+    .section-divider { height: 1.5px; background: #E8A8BA; margin: 0; }
 
     /* ── SHARED ── */
     .inner { max-width: 960px; margin: 0 auto; }
@@ -299,17 +298,13 @@
     .handout-card.green { border: 1.5px solid #B8D8C8; }
     .handout-card.pink  { border: 1.5px solid var(--pink-light); }
 
-    .handout-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
+    .handout-app-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
     }
-    .handout-card.green .handout-icon { background: var(--green-pale); }
-    .handout-card.pink  .handout-icon { background: var(--pink-pale); }
 
     .handout-card h3 {
       font-family: 'Fredoka One', cursive;
@@ -718,13 +713,7 @@
   </div>
 </section>
 
-<!-- Scallop divider: cream → cream-off -->
-<div class="scallop-down" style="background: var(--cream);">
-  <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="44" aria-hidden="true">
-    <path d="M0,0 Q30,44 60,0 Q90,44 120,0 Q150,44 180,0 Q210,44 240,0 Q270,44 300,0 Q330,44 360,0 Q390,44 420,0 Q450,44 480,0 Q510,44 540,0 Q570,44 600,0 Q630,44 660,0 Q690,44 720,0 Q750,44 780,0 Q810,44 840,0 Q870,44 900,0 Q930,44 960,0 Q990,44 1020,0 Q1050,44 1080,0 Q1110,44 1140,0 Q1170,44 1200,0 Q1230,44 1260,0 Q1290,44 1320,0 Q1350,44 1380,0 Q1410,44 1440,0 L1440,44 L0,44 Z" fill="#FDFAF5"/>
-    <path d="M0,0 Q30,44 60,0 Q90,44 120,0 Q150,44 180,0 Q210,44 240,0 Q270,44 300,0 Q330,44 360,0 Q390,44 420,0 Q450,44 480,0 Q510,44 540,0 Q570,44 600,0 Q630,44 660,0 Q690,44 720,0 Q750,44 780,0 Q810,44 840,0 Q870,44 900,0 Q930,44 960,0 Q990,44 1020,0 Q1050,44 1080,0 Q1110,44 1140,0 Q1170,44 1200,0 Q1230,44 1260,0 Q1290,44 1320,0 Q1350,44 1380,0 Q1410,44 1440,0" fill="none" stroke="#E8A8BA" stroke-width="2.5"/>
-  </svg>
-</div>
+<div class="section-divider"></div>
 
 <!-- ══ ABOUT ══ -->
 <section class="section-about" id="about">
@@ -838,13 +827,13 @@
     <div class="handout-cards">
 
       <div class="handout-card green">
-        <div class="handout-icon">🤖</div>
+        <img src="./icon_chatgpt.jpg" alt="ChatGPT app icon" class="handout-app-icon">
         <h3>ChatGPT Starter Guide</h3>
         <a href="./aiforfriends-chatgpt.html" target="_blank" rel="noopener" class="btn-handout">View Handout →</a>
       </div>
 
       <div class="handout-card pink">
-        <div class="handout-icon">✦</div>
+        <img src="./icon_claude.jpg" alt="Claude app icon" class="handout-app-icon">
         <h3>Claude Starter Guide</h3>
         <a href="./aiforfriends-Claude.html" target="_blank" rel="noopener" class="btn-handout">View Handout →</a>
       </div>
@@ -906,13 +895,7 @@
   </div>
 </section>
 
-<!-- Scallop divider: cream-off → cream -->
-<div class="scallop-up" style="background: var(--cream-off);">
-  <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="44" aria-hidden="true">
-    <path d="M0,44 Q30,0 60,44 Q90,0 120,44 Q150,0 180,44 Q210,0 240,44 Q270,0 300,44 Q330,0 360,44 Q390,0 420,44 Q450,0 480,44 Q510,0 540,44 Q570,0 600,44 Q630,0 660,44 Q690,0 720,44 Q750,0 780,44 Q810,0 840,44 Q870,0 900,44 Q930,0 960,44 Q990,0 1020,44 Q1050,0 1080,44 Q1110,0 1140,44 Q1170,0 1200,44 Q1230,0 1260,44 Q1290,0 1320,44 Q1350,0 1380,44 Q1410,0 1440,44 L1440,0 L0,0 Z" fill="#F5F0E5"/>
-    <path d="M0,44 Q30,0 60,44 Q90,0 120,44 Q150,0 180,44 Q210,0 240,44 Q270,0 300,44 Q330,0 360,44 Q390,0 420,44 Q450,0 480,44 Q510,0 540,44 Q570,0 600,44 Q630,0 660,44 Q690,0 720,44 Q750,0 780,44 Q810,0 840,44 Q870,0 900,44 Q930,0 960,44 Q990,0 1020,44 Q1050,0 1080,44 Q1110,0 1140,44 Q1170,0 1200,44 Q1230,0 1260,44 Q1290,0 1320,44 Q1350,0 1380,44 Q1410,0 1440,44" fill="none" stroke="#E8A8BA" stroke-width="2.5"/>
-  </svg>
-</div>
+<div class="section-divider"></div>
 
 <!-- ══ FAQ ══ -->
 <section class="section-faq" id="faq">
@@ -989,13 +972,7 @@
   </div>
 </section>
 
-<!-- Scallop divider: cream → cream-off (before RSVP) -->
-<div class="scallop-down" style="background: var(--cream);">
-  <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="44" aria-hidden="true">
-    <path d="M0,0 Q30,44 60,0 Q90,44 120,0 Q150,44 180,0 Q210,44 240,0 Q270,44 300,0 Q330,44 360,0 Q390,44 420,0 Q450,44 480,0 Q510,44 540,0 Q570,44 600,0 Q630,44 660,0 Q690,44 720,0 Q750,44 780,0 Q810,44 840,0 Q870,44 900,0 Q930,44 960,0 Q990,44 1020,0 Q1050,44 1080,0 Q1110,44 1140,0 Q1170,44 1200,0 Q1230,44 1260,0 Q1290,44 1320,0 Q1350,44 1380,0 Q1410,44 1440,0 L1440,44 L0,44 Z" fill="#FDFAF5"/>
-    <path d="M0,0 Q30,44 60,0 Q90,44 120,0 Q150,44 180,0 Q210,44 240,0 Q270,44 300,0 Q330,44 360,0 Q390,44 420,0 Q450,44 480,0 Q510,44 540,0 Q570,44 600,0 Q630,44 660,0 Q690,44 720,0 Q750,44 780,0 Q810,44 840,0 Q870,44 900,0 Q930,44 960,0 Q990,44 1020,0 Q1050,44 1080,0 Q1110,44 1140,0 Q1170,44 1200,0 Q1230,44 1260,0 Q1290,44 1320,0 Q1350,44 1380,0 Q1410,44 1440,0" fill="none" stroke="#E8A8BA" stroke-width="2.5"/>
-  </svg>
-</div>
+<div class="section-divider"></div>
 
 <!-- ══ RSVP ══ -->
 <section class="section-rsvp" id="rsvp">
